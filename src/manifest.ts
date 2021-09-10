@@ -39,7 +39,14 @@ export async function getManifest() {
       'https://*/',
     ],
     content_scripts: [{
-      matches: ['http://*/*', 'https://*/*'],
+      matches: [
+        'https://*.cybozu.com/k/*',
+        'https://*.cybozu-dev.com/k/*',
+        'https://*.kintone.com/k/*',
+        'https://*.kintone-dev.com/k/*',
+        'https://*.cybozu.cn/k/*',
+        'https://*.cybozu-dev.cn/k/*',
+      ],
       js: ['./dist/contentScripts/index.global.js'],
     }],
     web_accessible_resources: [
