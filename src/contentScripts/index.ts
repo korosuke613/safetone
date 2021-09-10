@@ -23,4 +23,28 @@ import App from './views/App.vue'
   shadowDOM.appendChild(root)
   document.body.appendChild(container)
   createApp(App).mount(root)
+
+  const targetNode = document.body
+  const observer = new MutationObserver((mutationList) => {
+    for (const mutation of mutationList) {
+      if (mutation.addedNodes.length > 0) {
+        for (const node of Array.from(mutation.addedNodes)) {
+          if ('querySelectorAll' in node) {
+            // for Thread and People
+            (<HTMLElement>node).querySelectorAll('.ocean-ui-comments-commentbase-delete').forEach((e) => {
+              if (e.parentElement === null) return
+              e.parentElement.style.visibility = 'hidden'
+            });
+
+            // for Record Comment
+            (<HTMLElement>node).querySelectorAll('.commentlist-footer-delete-gaia').forEach((e) => {
+              (<HTMLElement>e).style.visibility = 'hidden'
+            })
+          }
+        }
+      }
+    }
+  })
+
+  observer.observe(targetNode, { attributes: false, childList: true, subtree: true })
 })()
