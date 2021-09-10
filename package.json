@@ -1,8 +1,8 @@
 {
-  "name": "vitesse-webext",
-  "displayName": "Vitesse WebExt",
-  "version": "0.0.1",
-  "description": "[description]",
+  "name": "safetone",
+  "displayName": "safetone",
+  "version": "0.0.0",
+  "description": "Use kintone safely by browser extension",
   "private": true,
   "scripts": {
     "dev": "npm run clear && cross-env NODE_ENV=development run-p dev:*",
