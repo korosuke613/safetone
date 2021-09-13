@@ -39,6 +39,40 @@ import App from './views/App.vue'
             // for Record Comment
             (<HTMLElement>node).querySelectorAll('.commentlist-footer-delete-gaia').forEach((e) => {
               (<HTMLElement>e).style.visibility = 'hidden'
+            });
+
+            // 非公開
+            (<HTMLElement>node).querySelectorAll('.gaia-argoui-space-spacelayout-type').forEach((e) => {
+              if ((<HTMLElement>e).innerText.includes('非公開')) {
+                console.log('fire!')
+                document.querySelectorAll('.gaia-header-toolbar-navigation').forEach((e) => {
+                  (<HTMLElement>e).style.background = 'linear-gradient(-45deg, #000 25%, #fff920 25%, #fff920 50%, #000 50%, #000 75%, #fff920 75%, #fff920)';
+                  (<HTMLElement>e).style.backgroundSize = '60px 60px';
+                  (<HTMLElement>e).style.textAlign = 'center';
+                  (<HTMLElement>e).style.verticalAlign = 'middle'
+
+                  const p = document.createElement('p')
+                  const warningMessage = document.createTextNode('This space is HIDDEN!!')
+                  p.appendChild(warningMessage)
+                  p.style.display = 'block'
+                  p.style.marginBlockStart = '0em'
+                  p.style.marginBlockEnd = '0em'
+                  p.style.lineHeight = '48px'
+                  p.style.fontSize = '28px'
+                  p.style.fontWeight = 'bolder'
+                  p.style.color = '#000'
+                  p.style.textShadow = '1px 1px 0 #e4ff00, -1px 1px 0 #e4ff00, 1px -1px 0 #e4ff00, -1px -1px 0 #e4ff00';
+                  (<HTMLElement>e).appendChild(p)
+
+                  const sides = [
+                    <HTMLElement>e.querySelector('.gaia-header-toolbar-left'),
+                    <HTMLElement>e.querySelector('.gaia-header-toolbar-right'),
+                  ]
+                  sides.forEach((side) => {
+                    side.style.background = '#333'
+                  })
+                })
+              }
             })
           }
         }
